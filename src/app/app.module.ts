@@ -12,14 +12,19 @@ import { NavBarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 import { SecurityRouteActivator } from './securities/security-route-activator';
 import { AuthService } from './user/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateSecurityComponent } from './securities/create-security.component';
 
 @NgModule({
   declarations: [
     AppComponent,SecuritiesListComponent,SecurityComponent,SecurityDetailsComponent,NavBarComponent,Error404Component
+    ,CreateSecurityComponent
     
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [SecurityService,SecurityRouteActivator,AuthService],

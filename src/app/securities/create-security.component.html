@@ -1,0 +1,32 @@
+<h1>New Security</h1>
+<hr>
+<div class="col-md-6">
+  <form #newSecurityForm="ngForm" (ngSubmit)="saveSecurity(newSecurityForm.value)" autocomplete="off" novalidate>
+    <div class="form-group" [ngClass]="{'error': newSecurityForm.controls.name?.invalid && newSecurityForm.controls.name?.touched}">
+      <label for="securityName">Company Name:</label>
+      <em *ngIf="newSecurityForm.controls.name?.invalid && (newSecurityForm.controls.name?.touched)">Required</em>
+      <input (ngModel)="newSecurity.name" name="name" required id="name" type="text" class="form-control" placeholder="Name of company..." />
+    </div>
+
+    <div class="form-group" [ngClass]="{'error': newSecurityForm.controls.symbol?.invalid && newSecurityForm.controls.symbol?.touched}">
+      <label for="securitySymbol">Symbol:</label>
+      <em *ngIf="newSecurityForm.controls.symbol?.invalid && (newSecurityForm.controls.symbol?.touched)">Required</em>
+      <input (ngModel)="newSecurity.symbol" name="symbol" required id="symbol" type="text" class="form-control" placeholder="Symbol..." />
+    </div>
+
+    <div class="form-group">
+      <label for="onlineUrl">Online Url:</label>
+      <input (ngModel)="newSecurity.onlineUrl" name="onlineUrl" id="onlineUrl" type="text" class="form-control" placeholder="Online Url..." />
+    </div>
+    <div class="form-group" [ngClass]="{'error': newSecurityForm.controls.imageUrl?.invalid && newSecurityForm.controls.imageUrl?.touched}">
+      <label for="imageUrl">Image:</label>
+      <em *ngIf="newSecurityForm.controls.imageUrl?.invalid && newSecurityForm.controls.imageUrl?.touched && newSecurityForm.controls.imageUrl?.errors.required">Required</em>
+      <em *ngIf="newSecurityForm.controls.imageUrl?.invalid && newSecurityForm.controls.imageUrl?.touched  && newSecurityForm.controls.imageUrl?.errors.pattern">Must be a png or jpg url</em>
+      <input (ngModel)="newSecurity.imageUrl" name="imageUrl" required pattern=".*\/.*.(png|jpg)" id="imageUrl" type="text" class="form-control" placeholder="url of image..." />
+      <img />
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" [disabled]="newSecurityForm.invalid" class="btn btn-default" (click)="cancel()">Cancel</button>
+  </form>
+</div>

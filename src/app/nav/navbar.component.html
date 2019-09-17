@@ -10,7 +10,8 @@
             <a [routerLink]="['/securities']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact:true}">All Securities</a>
           </li>
-          <li><a href="">Create Security</a></li>
+          <li><a [routerLink]="['/securities/new']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Create Security</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
               Events
