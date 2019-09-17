@@ -4,11 +4,14 @@ import { SecurityDetailsComponent } from './securities/security-details.componen
 import { Error404Component } from './errors/404.component';
 import { SecurityRouteActivator } from './securities/security-route-activator';
 import { CreateSecurityComponent } from './securities/create-security.component';
+import { PortfolioListComponent } from './portfolios/portfolio-list.component';
 
 export const appRoutes:Routes = [
     {   path : "securities", component : SecuritiesListComponent },
     {   path : "securities/new", component : CreateSecurityComponent },
     {   path : "securities/:id", component : SecurityDetailsComponent, canActivate : [SecurityRouteActivator]},
+    {   path : "portfolios", component : PortfolioListComponent },
+    
     {   path : "", redirectTo: "securities", pathMatch: "full" },
     {   path : "404", component : Error404Component},
     {   path : "user", loadChildren : "./user/user.module#UserModule"}
