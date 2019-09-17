@@ -11,6 +11,11 @@ export class SecurityService
     {
         return SECURITIES.find(security => security.id === id);
     }
+
+    saveSecurity(security:ISecurity)
+    {
+        SECURITIES.push(security);
+    }
 }
 
 const SECURITIES:ISecurity[] = [
