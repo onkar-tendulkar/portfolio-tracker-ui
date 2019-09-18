@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { ISecurity } from '../securities/shared/security.model';
 import { PortfolioService } from './shared/portfolio.service';
 import { IPortfolio } from './shared/portfolio.model';
+import { AuthService } from '../user/auth.service';
 
 @Component ({
     selector:'portfolios-list',
@@ -14,11 +15,11 @@ export class PortfolioListComponent
 {
     portfolios:IPortfolio[];
 
-    constructor(private portfolioService:PortfolioService)
+    constructor(private portfolioService:PortfolioService,private authService:AuthService)
     {}
 
     ngOnInit()
     {
-        this.portfolios = this.portfolioService.getSecurities();
+        this.portfolios = this.portfolioService.getPortfoliosForUser(this.authService.currentUser.id);
     }
 }

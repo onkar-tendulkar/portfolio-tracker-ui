@@ -17,12 +17,14 @@ import { CreateSecurityComponent } from './securities/create-security.component'
 import { PortfolioListComponent } from './portfolios/portfolio-list.component';
 import { PortfolioThumbnailComponent } from './portfolios/portfolio-thumbnail.component';
 import { PortfolioService } from './portfolios/shared/portfolio.service';
+import { PortfolioRouteActivator } from './portfolios/portfolio-route-activator';
+import { PortfolioDetailsComponent } from './portfolios/portfolio-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,SecuritiesListComponent,SecurityComponent,SecurityDetailsComponent,NavBarComponent,Error404Component
     ,CreateSecurityComponent, 
-    PortfolioListComponent, PortfolioThumbnailComponent
+    PortfolioListComponent, PortfolioThumbnailComponent, PortfolioDetailsComponent
     
   ],
   imports: [
@@ -31,7 +33,9 @@ import { PortfolioService } from './portfolios/shared/portfolio.service';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [SecurityService,SecurityRouteActivator,AuthService,PortfolioService],
+  providers: [SecurityService,SecurityRouteActivator,
+            AuthService,
+            PortfolioService,PortfolioRouteActivator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

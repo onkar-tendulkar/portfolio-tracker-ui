@@ -2,17 +2,17 @@ import { IPortfolio } from './portfolio.model';
 
 export class PortfolioService
 {
-    getSecurities():IPortfolio[]
+    getPortfoliosForUser(userId:number):IPortfolio[]
     {
         return PORTFOLIOS;
     }
 
-    getSecurity(id:number):IPortfolio
+    getPortfolio(id:number):IPortfolio
     {
         return PORTFOLIOS.find(portfolio => portfolio.id === id);
     }
 
-    saveSecurity(portfolio:IPortfolio)
+    savePortfolio(portfolio:IPortfolio)
     {
         PORTFOLIOS.push(portfolio);
     }

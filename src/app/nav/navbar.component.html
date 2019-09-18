@@ -10,6 +10,10 @@
             <a [routerLink]="['/securities']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact:true}">All Securities</a>
           </li>
+          <li>
+            <a *ngIf = "auth.isAuthenticated()" [routerLink]="['/portfolios']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}">My Portfolios</a>
+          </li>
           <li><a [routerLink]="['/securities/new']" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact:true}">Create Security</a></li>
           <li class="dropdown">
