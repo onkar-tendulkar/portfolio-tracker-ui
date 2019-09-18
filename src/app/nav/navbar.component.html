@@ -7,14 +7,14 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li>
-            <a [routerLink]="['/securities']" routerLinkActive="active"
+            <a *ngIf = "auth.isAdmin()" [routerLink]="['/securities']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact:true}">All Securities</a>
           </li>
           <li>
-            <a *ngIf = "auth.isAuthenticated()" [routerLink]="['/portfolios']" routerLinkActive="active"
+            <a *ngIf = "auth.isInvestor()" [routerLink]="['/portfolios']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact:true}">My Portfolios</a>
           </li>
-          <li><a [routerLink]="['/securities/new']" routerLinkActive="active"
+          <li><a *ngIf = "auth.isAdmin()" [routerLink]="['/securities/new']" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact:true}">Create Security</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
@@ -31,8 +31,8 @@
         <div class="navbar-header navbar-right">
           <ul class="nav navbar-nav">
             <li>
-              <a *ngIf = "!auth.isAuthenticated()" [routerLink]="['user/login']">Login</a>
-              <a *ngIf = "auth.isAuthenticated()" [routerLink]="['user/profile']">Welcome {{auth.currentUser.firstName}}</a>
+              <a *ngIf = "!auth.isLoggedIn()" [routerLink]="['user/login']">Login</a>
+              <a *ngIf = "auth.isLoggedIn()" [routerLink]="['user/profile']">Welcome {{auth.currentUser.firstName}}</a>
             </li>
           </ul>
         </div>

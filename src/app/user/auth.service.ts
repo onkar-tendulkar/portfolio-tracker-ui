@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IUser } from './user.model';
+import { IUser, USER_ROLE } from './user.model';
 
 @Injectable()
 export class AuthService {
@@ -7,17 +7,41 @@ export class AuthService {
     currentUser:IUser
     loginUser(userName:string, password:string)
     {
-        this.currentUser = {
-        id:1,
-        userName:"onkart",
-        firstName:"Onkar",
-        lastName:"Tendulkar"
-        };
+        if(userName == "aa")
+        {
+            this.currentUser = {
+            id:1,
+            userName:"aa",
+            firstName:"Onkar",
+            lastName:"Tendulkar",
+            role : USER_ROLE.ADMIN
+            };
+        }
+        if(userName == "zz")
+        {
+            this.currentUser = {
+            id:1,
+            userName:"zz",
+            firstName:"Ragini",
+            lastName:"Tendulkar",
+            role : USER_ROLE.INVESTOR
+            };
+        }
     }
 
-    isAuthenticated()
+    isLoggedIn()
     {
         return !!this.currentUser;
+    }
+
+    isAdmin()
+    {
+        return this.isLoggedIn() && this.currentUser.role == USER_ROLE.ADMIN;
+    }
+
+    isInvestor()
+    {
+        return this.isLoggedIn() && ((this.currentUser.role == USER_ROLE.ADMIN) || (this.currentUser.role == USER_ROLE.INVESTOR));
     }
 
     updateCurrentUser(firstName: string, lastName: string) {
