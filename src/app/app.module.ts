@@ -19,12 +19,14 @@ import { PortfolioThumbnailComponent } from './portfolios/portfolio-thumbnail.co
 import { PortfolioService } from './portfolios/shared/portfolio.service';
 import { PortfolioRouteActivator } from './portfolios/portfolio-route-activator';
 import { PortfolioDetailsComponent } from './portfolios/portfolio-details.component';
+import { CreatePortfolioSecurityComponent } from './portfolios/create-portfolio-security.component';
 
 @NgModule({
   declarations: [
     AppComponent,SecuritiesListComponent,SecurityComponent,SecurityDetailsComponent,NavBarComponent,Error404Component
     ,CreateSecurityComponent, 
-    PortfolioListComponent, PortfolioThumbnailComponent, PortfolioDetailsComponent
+    PortfolioListComponent, PortfolioThumbnailComponent, PortfolioDetailsComponent,
+    CreatePortfolioSecurityComponent
     
   ],
   imports: [

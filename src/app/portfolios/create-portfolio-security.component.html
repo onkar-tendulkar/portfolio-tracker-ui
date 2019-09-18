@@ -1,0 +1,29 @@
+<div class="col-md-12">
+    <h3>Add Security to portfolio : </h3>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="newSecurityForm" autocomplete="off"
+            (ngSubmit)="saveSecurity(newSecurityForm.value)">
+      <div class="form-group">
+        <label for="symbol">Symbol:</label>
+        <em *ngIf="symbol.invalid && symbol.dirty && symbol.errors.required">Required</em>
+        <em *ngIf="symbol.errors?.maxlength">Max Length 5</em>
+        <input id="symbol" formControlName="symbol" type="text" class="form-control" placeholder="Symbol..." />
+      </div>
+      <div class="form-group">
+        <label for="purchaseDate">PurchaseDate:</label>
+        <input id="purchaseDate" formControlName="purchaseTime" type="date" class="form-control" placeholder="mm/dd/yyyy" />
+      </div>
+      <div class="form-group">
+        <label for="units">Units:</label>
+        <input id="units" type="number" formControlName="units" class="form-control" placeholder="Number of Units..." />
+      </div>
+      <div class="form-group">
+        <label for="costPerShare">Cost per share:</label>
+        <input id="costPerShare" type="number" formControlName="costPerShare" class="form-control" placeholder="Cost per share..." />
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-default">Cancel</button>
+    </form>
+  </div>
