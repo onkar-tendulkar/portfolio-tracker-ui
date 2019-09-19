@@ -4,7 +4,8 @@ import { IPortfolio } from './shared/portfolio.model';
 import { PortfolioService } from './shared/portfolio.service';
 
 @Component ({
-    template: `<h1>Portfolio : {{portfolio.name}}</h1>`
+    template: `<h1>Portfolio : {{portfolio.name}}</h1>
+                <portfolio-securities-list [securities]="portfolio?.securities"></portfolio-securities-list>`
 })
 export class PortfolioDetailsComponent
 {
@@ -19,6 +20,7 @@ export class PortfolioDetailsComponent
         this.portfolio = this.portfolioService.getPortfolio(
             +this.route.snapshot.params['id']
         );
+        console.log(this.portfolio.securities);
     }
 
 }

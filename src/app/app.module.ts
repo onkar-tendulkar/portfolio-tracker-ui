@@ -21,19 +21,25 @@ import { PortfolioRouteActivator } from './portfolios/portfolio-route-activator'
 import { PortfolioDetailsComponent } from './portfolios/portfolio-details.component';
 import { CreatePortfolioSecurityComponent } from './portfolios/create-portfolio-security.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import { PortfolioSecuritiesListComponent } from './portfolios/portfolio-security-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,SecuritiesListComponent,SecurityComponent,SecurityDetailsComponent,NavBarComponent,Error404Component
     ,CreateSecurityComponent, 
     PortfolioListComponent, PortfolioThumbnailComponent, PortfolioDetailsComponent,
-    CreatePortfolioSecurityComponent
+    CreatePortfolioSecurityComponent, PortfolioSecuritiesListComponent
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [SecurityService,SecurityRouteActivator,
             AuthService,

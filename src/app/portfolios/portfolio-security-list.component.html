@@ -1,0 +1,10 @@
+<div class="row" *ngFor="let security of securities">
+    <div class="col-md-10">
+      <div class="well">
+          <h3>{{security.securitySymbol}}</h3>
+          <span>Units: {{security.units}}</span><br />
+          <span>Cost per share: {{security.costPerShare}}</span>
+          <p>Purchased on: {{security.purchaseTime}}</p>
+      </div>
+    </div>
+  </div>
