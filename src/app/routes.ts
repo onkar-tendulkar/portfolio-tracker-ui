@@ -16,8 +16,7 @@ export const appRoutes:Routes = [
     
     {   path : "portfolios", component : PortfolioListComponent },
     {   path : "portfolios/:id", component : PortfolioDetailsComponent, canActivate : [PortfolioRouteActivator]},
-    {   path : "portfolio/securities/new", component : CreatePortfolioSecurityComponent },
-    
+        
     {   path : "", redirectTo: "securities", pathMatch: "full" },
     {   path : "404", component : Error404Component},
     {   path : "user", loadChildren : "./user/user.module#UserModule"}
