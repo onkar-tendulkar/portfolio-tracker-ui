@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { IPortfolio } from './shared/portfolio.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IPortfolioSecurity } from './shared/portfolio-security.model';
+import { EventEmitter } from 'events';
 
 @Component({
-    
+    selector: 'create-portfpolio-security',
     templateUrl: 'create-portfolio-security.component.html',
     styles: [`
             em { float: right; color: #E05C65; padding-left: 10px; }
@@ -13,6 +15,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CreatePortfolioSecurityComponent implements OnInit
 {
+    @Output() saveNewSecurity = new EventEmitter();
+    
     newSecurityForm:FormGroup
     symbol:FormControl
     units:FormControl
@@ -34,7 +38,7 @@ export class CreatePortfolioSecurityComponent implements OnInit
     });
     }
 
-    saveSecurity(formValues)
+    saveSecurity(formValues:IPortfolioSecurity)
     {
         console.log(formValues);
     }
