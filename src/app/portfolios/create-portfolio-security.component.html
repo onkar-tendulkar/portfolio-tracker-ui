@@ -5,10 +5,10 @@
     <form [formGroup]="newSecurityForm" autocomplete="off"
             (ngSubmit)="saveSecurity(newSecurityForm.value)">
       <div class="form-group">
-        <label for="symbol">Symbol:</label>
-        <em *ngIf="symbol.invalid && symbol.dirty && symbol.errors.required">Required</em>
-        <em *ngIf="symbol.errors?.maxlength">Max Length 5</em>
-        <input id="symbol" formControlName="symbol" type="text" class="form-control" placeholder="Symbol..." />
+        <label for="securitySymbol">Symbol:</label>
+        <em *ngIf="securitySymbol.invalid && securitySymbol.dirty && securitySymbol.errors.required">Required</em>
+        <em *ngIf="securitySymbol.errors?.maxlength">Max Length 5</em>
+        <input id="securitySymbol" formControlName="securitySymbol" type="text" class="form-control" placeholder="Symbol..." />
       </div>
       <div class="form-group">
         <label for="purchaseDate">PurchaseDate:</label>

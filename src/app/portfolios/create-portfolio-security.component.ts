@@ -18,20 +18,20 @@ export class CreatePortfolioSecurityComponent implements OnInit
     @Output() saveNewSecurity = new EventEmitter();
     
     newSecurityForm:FormGroup
-    symbol:FormControl
+    securitySymbol:FormControl
     units:FormControl
     costPerShare:FormControl
     purchaseTime:FormControl
 
     ngOnInit(): void {
         
-    this.symbol = new FormControl('',[Validators.required,Validators.maxLength(5)]);
+    this.securitySymbol = new FormControl('',[Validators.required,Validators.maxLength(5)]);
     this.units = new FormControl('',[Validators.required,Validators.pattern('^[1-9]\d*$')]);
     this.costPerShare = new FormControl('',[Validators.required,Validators.pattern('^[1-9]\d*$')]);
     this.purchaseTime = new FormControl('',Validators.required);
     
     this.newSecurityForm = new FormGroup({
-        symbol: this.symbol,
+        securitySymbol: this.securitySymbol,
         units: this.units,
         costPerShare: this.costPerShare,
         purchaseTime: this.purchaseTime
@@ -40,6 +40,8 @@ export class CreatePortfolioSecurityComponent implements OnInit
 
     saveSecurity(formValues:IPortfolioSecurity)
     {
+        console.log("Form");
+        console.log(formValues);
         let security : IPortfolioSecurity = 
         {
             securitySymbol: formValues.securitySymbol,
@@ -47,6 +49,7 @@ export class CreatePortfolioSecurityComponent implements OnInit
             costPerShare: +formValues.costPerShare,
             purchaseTime: formValues.purchaseTime
         };
+        console.log(security);
         this.saveNewSecurity.emit(security);
     }
     

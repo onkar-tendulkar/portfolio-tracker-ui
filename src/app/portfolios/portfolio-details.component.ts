@@ -32,5 +32,6 @@ export class PortfolioDetailsComponent
     saveNewSecurity(event)
     {
         this.portfolioService.addSecurityToPortfolio(this.portfolio, event);   
+        this.addMode=false;
     }
 }
