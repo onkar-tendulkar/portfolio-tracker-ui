@@ -1,4 +1,5 @@
 import { IPortfolio } from './portfolio.model';
+import { IPortfolioSecurity } from './portfolio-security.model';
 
 export class PortfolioService
 {
@@ -15,6 +16,11 @@ export class PortfolioService
     savePortfolio(portfolio:IPortfolio)
     {
         PORTFOLIOS.push(portfolio);
+    }
+
+    addSecurityToPortfolio(portfolio:IPortfolio,security:IPortfolioSecurity)
+    {
+        portfolio.securities.push(security);
     }
 }
 

@@ -7,4 +7,5 @@
         </div>
 </div>
 <portfolio-securities-list *ngIf="!addMode" [securities]="portfolio?.securities"></portfolio-securities-list>
-<create-portfpolio-security *ngIf="addMode"></create-portfpolio-security>
+<create-portfpolio-security *ngIf="addMode"
+        (saveNewSecurity)="saveNewSecurity($event)"></create-portfpolio-security>
