@@ -8,6 +8,15 @@
 </select>
 </span>
 
+<label  style="padding-left:50px;">Sort By</label>
+<span style="padding-left:10px;">
+  <select style="color:black" id="sortBy" name="sortBy" 
+  (change)="sortBy=$event.target.value;onChange()">
+    <option style="color:black" value="symbol">Symbol</option>
+    <option style="color:black" value="price">Price</option>
+  </select>
+  </span>
+
 <div class="row" *ngFor="let security of visibleSecurities">
     <div class="col-md-10">
       <div class="well">

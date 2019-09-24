@@ -12,7 +12,8 @@ export class PortfolioSecuritiesListComponent
     visibleSecurities:IPortfolioSecurity[];
 
     sectors : string[] = ["All"];
-    sectorFilter:String;
+    sectorFilter:string;
+    sortBy:string;
 
     ngOnInit()
     {
@@ -20,13 +21,17 @@ export class PortfolioSecuritiesListComponent
         {
             this.sectors = ["All"];
             this.sectors = this.sectors.concat(this.securities.map(s => s.sector));
+            this.sectorFilter = "All";
+
+            this.sortBy = "symbol";
         }
-        this.visibleSecurities = this.securities.slice(0);
+        this.onChange();
     }
 
     onChange()
     {
         this.applyFilter();
+        this.sort();
     }
 
     applyFilter()
@@ -42,5 +47,38 @@ export class PortfolioSecuritiesListComponent
                     return s.sector.toUpperCase() === this.sectorFilter.toUpperCase();
                 });
         }
+    }
+
+    sort()
+    {
+        if(this.sortBy==='price')
+        {
+            this.visibleSecurities.sort(this.sortByPrice);
+        }
+        else
+        {
+            this.visibleSecurities.sort(this.sortBySymbol);
+        }
+    }
+
+    sortBySymbol(s1:IPortfolioSecurity,s2:IPortfolioSecurity)
+    {
+        if(s1.securitySymbol > s2.securitySymbol)
+        {
+            return 1;
+        }
+        else if(s1.securitySymbol === s2.securitySymbol)
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    sortByPrice(s1:IPortfolioSecurity,s2:IPortfolioSecurity)
+    {
+        return s1.costPerShare - s2.costPerShare;
     }
 }
