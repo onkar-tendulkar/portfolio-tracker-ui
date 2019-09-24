@@ -1,7 +1,7 @@
 <label for="sectorFilter">Sector</label>
 <span style="padding-left:10px;">
 <select style="color:black" id="sectorFilter" name="sectorFilter" 
-(change)="onFilterChange($event.target.value)">
+(change)="sectorFilter=$event.target.value;onChange()">
   <option style="color:black" *ngFor="let s of sectors" >
     {{s}}
   </option>

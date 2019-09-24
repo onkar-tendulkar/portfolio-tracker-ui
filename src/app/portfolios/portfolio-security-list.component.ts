@@ -12,6 +12,7 @@ export class PortfolioSecuritiesListComponent
     visibleSecurities:IPortfolioSecurity[];
 
     sectors : string[] = ["All"];
+    sectorFilter:String;
 
     ngOnInit()
     {
@@ -21,13 +22,16 @@ export class PortfolioSecuritiesListComponent
             this.sectors = this.sectors.concat(this.securities.map(s => s.sector));
         }
         this.visibleSecurities = this.securities.slice(0);
-        console.log(this.sectors);
     }
 
-    onFilterChange(filter)
+    onChange()
     {
-        console.log(filter);
-        if(filter=="All")
+        this.applyFilter();
+    }
+
+    applyFilter()
+    {
+        if(this.sectorFilter=="All")
         {
             this.visibleSecurities = this.securities.slice(0);
         }
@@ -35,7 +39,7 @@ export class PortfolioSecuritiesListComponent
         {
             this.visibleSecurities = this.securities.filter(s => 
                 {
-                    return s.sector.toUpperCase() === filter.toUpperCase();
+                    return s.sector.toUpperCase() === this.sectorFilter.toUpperCase();
                 });
         }
     }
