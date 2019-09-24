@@ -6,6 +6,7 @@
             <a (click)="addSecurity()">Add Security</a>
         </div>
 </div>
+<br/>
 <portfolio-securities-list *ngIf="!addMode" [securities]="portfolio?.securities"></portfolio-securities-list>
 <create-portfpolio-security *ngIf="addMode"
         (saveNewSecurity)="saveNewSecurity($event)"></create-portfpolio-security>

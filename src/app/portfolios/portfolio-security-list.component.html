@@ -1,4 +1,14 @@
-<div class="row" *ngFor="let security of securities">
+<label for="sectorFilter">Sector</label>
+<span style="padding-left:10px;">
+<select style="color:black" id="sectorFilter" name="sectorFilter" 
+(change)="onFilterChange($event.target.value)">
+  <option style="color:black" *ngFor="let s of sectors" >
+    {{s}}
+  </option>
+</select>
+</span>
+
+<div class="row" *ngFor="let security of visibleSecurities">
     <div class="col-md-10">
       <div class="well">
           <h3>{{security.securitySymbol}}</h3>
