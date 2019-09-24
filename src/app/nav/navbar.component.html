@@ -36,11 +36,12 @@
             </li>
           </ul>
         </div>
-        <form id="searchForm"  class="navbar-form navbar-right"  >
+        <form id="searchForm"  class="navbar-form navbar-right" (ngSubmit)="searchSecurity(searchSymbol)" >
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search Sessions" >
+            <input type="text" [(ngModel)]="searchSymbol" 
+              name="searchSymbol" class="form-control" placeholder="Search Security..." >
           </div>
-          <button class="btn btn-default" >
+          <button class="btn btn-default"  >
             Search
           </button>
         </form>

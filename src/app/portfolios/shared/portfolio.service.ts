@@ -1,5 +1,6 @@
 import { IPortfolio } from './portfolio.model';
 import { IPortfolioSecurity } from './portfolio-security.model';
+import { EventEmitter } from '@angular/core';
 
 export class PortfolioService
 {
@@ -21,6 +22,31 @@ export class PortfolioService
     addSecurityToPortfolio(portfolio:IPortfolio,security:IPortfolioSecurity)
     {
         portfolio.securities.push(security);
+    }
+    
+    searchSecurity(searchSymbol:string)
+    {
+        var results:IPortfolioSecurity[]=[];
+        PORTFOLIOS.forEach(
+            p => {
+                var matchingSecurities = p.securities.filter(
+                    s=> s.securitySymbol === searchSymbol);
+                    matchingSecurities = matchingSecurities.map( (s:any) => 
+                    {
+                        s.portfolioId = p.id;
+                        s.portfolioName = p.name;
+                        return s;
+                    });
+                    results = results.concat(matchingSecurities)
+            }
+        )
+        
+        var emitter = new EventEmitter(true);
+        setTimeout(() => {
+            emitter.emit(results)
+        , 100});
+
+        return emitter;
     }
 }
 

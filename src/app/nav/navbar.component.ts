@@ -1,5 +1,7 @@
 import { Component } from '@angular/core'
 import { AuthService } from '../user/auth.service';
+import { IPortfolioSecurity } from '../portfolios/shared/portfolio-security.model';
+import { PortfolioService } from '../portfolios/shared/portfolio.service';
 
 @Component ({
     selector:'nav-bar',
@@ -10,6 +12,17 @@ import { AuthService } from '../user/auth.service';
 })
 export class NavBarComponent
 { 
-    constructor (private auth:AuthService){}
+    foundPortfolioSecurities:IPortfolioSecurity[];
+
+    constructor (private auth:AuthService,private portfolioService:PortfolioService){}
     
+    searchSecurity(searchSymbol)
+    {
+        this.portfolioService.searchSecurity(searchSymbol).subscribe
+            ( securities => {
+                this.foundPortfolioSecurities = securities;
+            }
+        )
+        console.log(this.foundPortfolioSecurities);
+    }
 }
