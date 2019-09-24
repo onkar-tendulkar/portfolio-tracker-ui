@@ -2,9 +2,10 @@
     <div class="col-md-10">
       <div class="well">
           <h3>{{security.securitySymbol}}</h3>
+          <h5>Sector: {{security.sector}}</h5>
           <span>Units: {{security.units}}</span><br />
           <span>Cost per share: {{security.costPerShare | currency:'USD'}}</span>
-          <p>Purchased on: {{security.purchaseTime | date:'short'}}</p>
+          <p align="right">Purchased on: {{security.purchaseTime | date:'short'}}</p>
       </div>
     </div>
   </div>

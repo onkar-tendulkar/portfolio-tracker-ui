@@ -26,9 +26,10 @@ export class PortfolioService
 
 const PORTFOLIOS:IPortfolio[] = [
     {"id":1, userId: 1,"name":"Onkar","createdTime":new Date("2019-09-05T13:04:38.517+0000"),
-    securities: [{"securitySymbol":"MS", "units":2, "costPerShare":50,"purchaseTime":new Date()},
-    {"securitySymbol":"GOOGL", "units":1, "costPerShare":100,"purchaseTime":new Date()}]},
+    securities: [{"securitySymbol":"MS", "sector":"Financial Services", "units":2, "costPerShare":50,"purchaseTime":new Date()},
+    {"securitySymbol":"GOOGL", "sector":"Technology", "units":1, "costPerShare":100,"purchaseTime":new Date()}]},
+    
     {"id":2, userId: 2,"name":"Ragini","createdTime":new Date("2019-09-05T13:04:38.517+0000"),
-    securities: [{"securitySymbol":"TSLA", "units":2, "costPerShare":50,"purchaseTime":new Date()},
-    {"securitySymbol":"GOOGL", "units":1, "costPerShare":100,"purchaseTime":new Date()}]},
+    securities: [{"securitySymbol":"TSLA", "sector":"Consumer Cyclical","units":2, "costPerShare":50,"purchaseTime":new Date()},
+    {"securitySymbol":"GOOGL", "sector":"Technology", "units":1, "costPerShare":100,"purchaseTime":new Date()}]},
 ]
