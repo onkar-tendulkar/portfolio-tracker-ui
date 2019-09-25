@@ -41,10 +41,18 @@
             <input type="text" [(ngModel)]="searchSymbol" 
               name="searchSymbol" class="form-control" placeholder="Search Security..." >
           </div>
-          <button class="btn btn-default"  >
+          <button type="submit" class="btn btn-default" modal-trigger >
             Search
           </button>
         </form>
       </div>
     </div>
   </div>
+  <simple-modal title="Portfolios having given security">
+    <div class="list-group">
+      <a class="list-group-item" *ngFor="let ps of foundPortfolioSecurities"
+        [routerLink]="['/portfolios', ps.portfolioId]">
+        Portfolio : {{ps.portfolioName}}, Units : {{ps.units}}
+      </a>
+    </div>
+  </simple-modal>

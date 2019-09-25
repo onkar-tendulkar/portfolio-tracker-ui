@@ -23,6 +23,5 @@ export class NavBarComponent
                 this.foundPortfolioSecurities = securities;
             }
         )
-        console.log(this.foundPortfolioSecurities);
     }
 }

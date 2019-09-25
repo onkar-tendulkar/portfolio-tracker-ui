@@ -22,13 +22,19 @@ import { PortfolioDetailsComponent } from './portfolios/portfolio-details.compon
 import { CreatePortfolioSecurityComponent } from './portfolios/create-portfolio-security.component';
 
 import { PortfolioSecuritiesListComponent } from './portfolios/portfolio-security-list.component';
+import { SimpleModalComponent } from './common/simpleModal.component';
+import { ModalTriggerDirective } from './common/modalTrigger.directive';
+import { JQ_TOKEN } from './common/jQuery.service';
+
+let jQuery = window['$'];
 
 @NgModule({
   declarations: [
     AppComponent,SecuritiesListComponent,SecurityComponent,SecurityDetailsComponent,NavBarComponent,Error404Component
     ,CreateSecurityComponent, 
     PortfolioListComponent, PortfolioThumbnailComponent, PortfolioDetailsComponent,
-    CreatePortfolioSecurityComponent, PortfolioSecuritiesListComponent
+    CreatePortfolioSecurityComponent, PortfolioSecuritiesListComponent,
+    SimpleModalComponent, ModalTriggerDirective
     
   ],
   imports: [
@@ -39,7 +45,9 @@ import { PortfolioSecuritiesListComponent } from './portfolios/portfolio-securit
   ],
   providers: [SecurityService,SecurityRouteActivator,
             AuthService,
-            PortfolioService,PortfolioRouteActivator],
+            PortfolioService,PortfolioRouteActivator,
+            { provide: JQ_TOKEN, useValue:jQuery}
+          ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
