@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, OnChanges } from '@angular/core'
 import { IPortfolioSecurity } from './shared/portfolio-security.model';
 
 @Component ({
     selector:'portfolio-securities-list',
     templateUrl: 'portfolio-security-list.component.html'
 })
-export class PortfolioSecuritiesListComponent
+export class PortfolioSecuritiesListComponent implements OnChanges
 {
+    
     @Input() securities:IPortfolioSecurity[];
     
     visibleSecurities:IPortfolioSecurity[];
@@ -26,6 +27,13 @@ export class PortfolioSecuritiesListComponent
             this.sortBy = "symbol";
         }
         this.onChange();
+    }
+
+    ngOnChanges(): void {
+        if(this.sortBy!=undefined && this.sectorFilter!=undefined && this.securities!=undefined)
+        {
+            this.onChange();
+        }
     }
 
     onChange()

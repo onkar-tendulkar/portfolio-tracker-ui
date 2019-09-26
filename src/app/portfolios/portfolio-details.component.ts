@@ -26,8 +26,6 @@ export class PortfolioDetailsComponent
                 +params['id']); 
                 console.log(this.portfolio);                   
         });
-        console.log(this.portfolio);   
-        
     }
 
     addSecurity()
