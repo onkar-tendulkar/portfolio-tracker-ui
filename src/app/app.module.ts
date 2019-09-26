@@ -25,6 +25,7 @@ import { PortfolioSecuritiesListComponent } from './portfolios/portfolio-securit
 import { SimpleModalComponent } from './common/simpleModal.component';
 import { ModalTriggerDirective } from './common/modalTrigger.directive';
 import { JQ_TOKEN } from './common/jQuery.service';
+import { HttpClientModule } from '@angular/common/http';
 
 let jQuery = window['$'];
 
@@ -41,7 +42,8 @@ let jQuery = window['$'];
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [SecurityService,SecurityRouteActivator,
             AuthService,

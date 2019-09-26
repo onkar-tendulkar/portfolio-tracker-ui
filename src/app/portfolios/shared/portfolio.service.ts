@@ -1,12 +1,19 @@
 import { IPortfolio } from './portfolio.model';
 import { IPortfolioSecurity } from './portfolio-security.model';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
+@Injectable()
 export class PortfolioService
 {
-    getPortfoliosForUser(userId:number):IPortfolio[]
+    constructor(private http:HttpClient)
+    {}
+
+    getPortfoliosForUser(userId:number):Observable<IPortfolio[]>
     {
-        return PORTFOLIOS;
+        var portFolioList:IPortfolio;
+        return this.http.get<IPortfolio[]>('http://localhost:8080/api/portfolio');
     }
 
     getPortfolio(id:number):IPortfolio

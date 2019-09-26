@@ -3,6 +3,7 @@ import { ISecurity } from '../securities/shared/security.model';
 import { PortfolioService } from './shared/portfolio.service';
 import { IPortfolio } from './shared/portfolio.model';
 import { AuthService } from '../user/auth.service';
+import { Observable } from 'rxjs';
 
 @Component ({
     selector:'portfolios-list',
@@ -20,6 +21,12 @@ export class PortfolioListComponent
 
     ngOnInit()
     {
-        this.portfolios = this.portfolioService.getPortfoliosForUser(this.authService.currentUser.id);
+        var portfoliosObservable:Observable<IPortfolio[]> = this.portfolioService.getPortfoliosForUser(this.authService.currentUser.id);
+        portfoliosObservable.subscribe(p =>
+            {
+                this.portfolios = p;
+            });
     }
+
+
 }
