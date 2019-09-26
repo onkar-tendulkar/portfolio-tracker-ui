@@ -18,14 +18,16 @@ export class PortfolioDetailsComponent
 
     ngOnInit()
     {
+        
         /* + is just to type cast to number*/
-        this.addMode=false;
-
         this.route.params.forEach((params:Params) => {
             this.portfolio = this.portfolioService.getPortfolio(
-                +params['id']); 
-                console.log(this.portfolio);                   
+                +params['id']);   
+        
+        /*QuestionForDushyant*/
+        this.addMode=false;
         });
+        
     }
 
     addSecurity()
