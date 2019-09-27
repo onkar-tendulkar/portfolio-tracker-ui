@@ -4,6 +4,7 @@ import { PortfolioService } from './shared/portfolio.service';
 import { IPortfolio } from './shared/portfolio.model';
 import { AuthService } from '../user/auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component ({
     selector:'portfolios-list',
@@ -14,10 +15,16 @@ export class PortfolioListComponent
     portfolios:IPortfolio[];
     addMode:boolean=false;
 
-    constructor(private portfolioService:PortfolioService,private authService:AuthService)
+    constructor(private portfolioService:PortfolioService,private authService:AuthService,
+                    private router:Router)
     {}
 
     ngOnInit()
+    {
+        this.loadPortfolios();
+    }
+
+    loadPortfolios()
     {
         var portfoliosObservable:Observable<IPortfolio[]> = this.portfolioService.getPortfoliosForUser(this.authService.currentUser.id);
         portfoliosObservable.subscribe(p =>
@@ -32,10 +39,14 @@ export class PortfolioListComponent
     }
 
     saveNewPortfolio(event)
-    {
-        console.log("sending");  
-        this.portfolioService.createPortfolio(event); 
-        console.log("sent");  
-        this.addMode=false;
+    {  
+        this.portfolioService.createPortfolio(event).subscribe(r =>
+            {
+                if(r!=undefined)
+                {
+                    this.addMode=false;
+                    this.router.navigate(['/portfolios']);
+                }
+            });         
     }
 }

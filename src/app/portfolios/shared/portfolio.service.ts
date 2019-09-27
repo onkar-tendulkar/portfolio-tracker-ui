@@ -21,9 +21,11 @@ export class PortfolioService
         ;
     }
     
-    createPortfolio(portfolio:IPortfolio)
+    createPortfolio(portfolio:IPortfolio):Observable<Object>
     {
-        this.http.post('http://localhost:8080/api/portfolio',portfolio).subscribe(r => console.log(r));
+        return this.http.post('http://localhost:8080/api/portfolio',portfolio)
+        .pipe(catchError(this.handleError<Object>('getPortfoliosForUser',undefined)))
+        ;
     }
 
     getPortfolio(id:number):IPortfolio
