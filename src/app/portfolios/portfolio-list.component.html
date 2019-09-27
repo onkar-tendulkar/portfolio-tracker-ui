@@ -1,0 +1,10 @@
+<div>
+    <h1>Portfolios</h1>
+    <div *ngIf="!addMode">
+    <a (click)="addPortfolioMode()">Create portfolio</a>
+    <hr>
+    <portfolio *ngFor="let portfolio of portfolios" [portfolio]="portfolio"></portfolio>
+    </div>
+    <create-portfolio *ngIf="addMode"
+        (saveNewPortfolio)="saveNewPortfolio($event)"></create-portfolio>
+</div>

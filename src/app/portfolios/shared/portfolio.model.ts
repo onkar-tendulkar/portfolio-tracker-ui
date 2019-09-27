@@ -5,6 +5,6 @@ export interface IPortfolio
     id:number
     userId:number
     name:string
-    createdTime:Date
+    createdTime?:Date
     securities?: IPortfolioSecurity[]
 }

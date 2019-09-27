@@ -43,8 +43,6 @@ export class CreatePortfolioSecurityComponent implements OnInit
 
     saveSecurity(formValues:IPortfolioSecurity)
     {
-        console.log("Form");
-        console.log(formValues);
         let security : IPortfolioSecurity = 
         {
             securitySymbol: formValues.securitySymbol,
@@ -53,7 +51,6 @@ export class CreatePortfolioSecurityComponent implements OnInit
             costPerShare: +formValues.costPerShare,
             purchaseTime: formValues.purchaseTime
         };
-        console.log(security);
         this.saveNewSecurity.emit(security);
     }
     

@@ -7,14 +7,12 @@ import { Observable } from 'rxjs';
 
 @Component ({
     selector:'portfolios-list',
-    template: `<div>
-                <h1>Portfolios</h1>
-                <portfolio *ngFor="let portfolio of portfolios" [portfolio]="portfolio"></portfolio>
-                </div>`
+    templateUrl: 'portfolio-list.component.html'
 })
 export class PortfolioListComponent
 {
     portfolios:IPortfolio[];
+    addMode:boolean=false;
 
     constructor(private portfolioService:PortfolioService,private authService:AuthService)
     {}
@@ -28,5 +26,15 @@ export class PortfolioListComponent
             });
     }
 
+    addPortfolioMode()
+    {
+        this.addMode=true;
+    }
 
+    saveNewPortfolio(event)
+    {
+        //this.portfolioService.addPortfolio(this.portfolio, event); 
+        console.log(event);  
+        this.addMode=false;
+    }
 }

@@ -1,0 +1,17 @@
+<div class="col-md-12">
+    <h3>Create portfolio : </h3>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="newPortfolioForm" autocomplete="off"
+            (ngSubmit)="savePortfolio(newPortfolioForm.value)">
+      <div class="form-group">
+        <label for="portfolioName">Name:</label>
+        <em *ngIf="portfolioName.invalid && portfolioName.dirty && portfolioName.errors.required">Required</em>
+        <em *ngIf="portfolioName.errors?.maxlength">Max Length 20</em>
+        <input id="portfolioName" formControlName="portfolioName" type="text" class="form-control" placeholder="Portfolio Name..." />
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-default">Cancel</button>
+    </form>
+  </div>

@@ -26,6 +26,7 @@ import { SimpleModalComponent } from './common/simpleModal.component';
 import { ModalTriggerDirective } from './common/modalTrigger.directive';
 import { JQ_TOKEN } from './common/jQuery.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CreatePortfolioComponent } from './portfolios/create-portfolio.component';
 
 let jQuery = window['$'];
 
@@ -35,8 +36,8 @@ let jQuery = window['$'];
     ,CreateSecurityComponent, 
     PortfolioListComponent, PortfolioThumbnailComponent, PortfolioDetailsComponent,
     CreatePortfolioSecurityComponent, PortfolioSecuritiesListComponent,
-    SimpleModalComponent, ModalTriggerDirective
-    
+    SimpleModalComponent, ModalTriggerDirective,
+    CreatePortfolioComponent
   ],
   imports: [
     BrowserModule,
