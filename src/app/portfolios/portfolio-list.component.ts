@@ -19,7 +19,7 @@ export class PortfolioListComponent
 
     ngOnInit()
     {
-        var portfoliosObservable:Observable<IPortfolio[]> = this.portfolioService.getHardcodedPortfolios(this.authService.currentUser.id);
+        var portfoliosObservable:Observable<IPortfolio[]> = this.portfolioService.getPortfoliosForUser(this.authService.currentUser.id);
         portfoliosObservable.subscribe(p =>
             {
                 this.portfolios = p;
@@ -33,8 +33,9 @@ export class PortfolioListComponent
 
     saveNewPortfolio(event)
     {
-        //this.portfolioService.addPortfolio(this.portfolio, event); 
-        console.log(event);  
+        console.log("sending");  
+        this.portfolioService.createPortfolio(event); 
+        console.log("sent");  
         this.addMode=false;
     }
 }

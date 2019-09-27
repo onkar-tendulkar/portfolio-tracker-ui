@@ -20,16 +20,11 @@ export class PortfolioService
         .pipe(catchError(this.handleError<IPortfolio[]>('getPortfoliosForUser',[])))
         ;
     }
-    handleError<T>(operation = 'operation', result?: T)
+    
+    createPortfolio(portfolio:IPortfolio)
     {
-        return (error:any): Observable<T> =>
-        {
-            console.error(error);
-            return of(result as T);
-        }
+        this.http.post('http://localhost:8080/api/portfolio',portfolio).subscribe(r => console.log(r));
     }
-
-
 
     getPortfolio(id:number):IPortfolio
     {
@@ -74,6 +69,15 @@ export class PortfolioService
     getHardcodedPortfolios(userId:number):Observable<IPortfolio[]>
     {
         return of(PORTFOLIOS);
+    }
+
+    handleError<T>(operation = 'operation', result?: T)
+    {
+        return (error:any): Observable<T> =>
+        {
+            console.error(error);
+            return of(result as T);
+        }
     }
 }
 
