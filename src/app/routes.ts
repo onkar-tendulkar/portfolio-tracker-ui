@@ -7,7 +7,6 @@ import { CreateSecurityComponent } from './securities/create-security.component'
 import { PortfolioListComponent } from './portfolios/portfolio-list.component';
 import { PortfolioDetailsComponent } from './portfolios/portfolio-details.component';
 import { PortfolioRouteActivator } from './portfolios/portfolio-route-activator';
-import { CreatePortfolioSecurityComponent } from './portfolios/create-portfolio-security.component';
 
 export const appRoutes:Routes = [
     {   path : "securities", component : SecuritiesListComponent },

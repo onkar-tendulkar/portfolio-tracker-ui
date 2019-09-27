@@ -21,7 +21,7 @@ export class PortfolioListComponent
 
     ngOnInit()
     {
-        var portfoliosObservable:Observable<IPortfolio[]> = this.portfolioService.getPortfoliosForUser(this.authService.currentUser.id);
+        var portfoliosObservable:Observable<IPortfolio[]> = this.portfolioService.getHardcodedPortfolios(this.authService.currentUser.id);
         portfoliosObservable.subscribe(p =>
             {
                 this.portfolios = p;

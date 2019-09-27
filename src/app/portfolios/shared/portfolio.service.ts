@@ -2,19 +2,34 @@ import { IPortfolio } from './portfolio.model';
 import { IPortfolioSecurity } from './portfolio-security.model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { AuthService } from 'src/app/user/auth.service';
+
 
 @Injectable()
 export class PortfolioService
 {
-    constructor(private http:HttpClient)
+    constructor(private http:HttpClient,private authService:AuthService)
     {}
 
     getPortfoliosForUser(userId:number):Observable<IPortfolio[]>
     {
         var portFolioList:IPortfolio;
-        return this.http.get<IPortfolio[]>('http://localhost:8080/api/portfolio');
+        return this.http.get<IPortfolio[]>('http://localhost:8080/api/portfolio?userId='+this.authService.currentUser.id)
+        .pipe(catchError(this.handleError<IPortfolio[]>('getPortfoliosForUser',[])))
+        ;
     }
+    handleError<T>(operation = 'operation', result?: T)
+    {
+        return (error:any): Observable<T> =>
+        {
+            console.error(error);
+            return of(result as T);
+        }
+    }
+
+
 
     getPortfolio(id:number):IPortfolio
     {
@@ -54,6 +69,11 @@ export class PortfolioService
         , 100});
 
         return emitter;
+    }
+
+    getHardcodedPortfolios(userId:number):Observable<IPortfolio[]>
+    {
+        return of(PORTFOLIOS);
     }
 }
 

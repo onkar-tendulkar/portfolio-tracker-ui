@@ -20,9 +20,9 @@ export class AuthService {
         if(userName == "zz")
         {
             this.currentUser = {
-            id:1,
+            id:2,
             userName:"zz",
-            firstName:"Ragini",
+            firstName:"Milind",
             lastName:"Tendulkar",
             role : USER_ROLE.INVESTOR
             };

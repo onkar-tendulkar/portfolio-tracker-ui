@@ -10,7 +10,7 @@ import { Component, Input, OnInit } from "@angular/core";
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     <h4 class="modal-title">{{title}}</h4>
                 </div>
-                <div class="modal.body">
+                <div class="modal-body">
                     <ng-content></ng-content>
                 </div>
             </div>
