@@ -17,7 +17,6 @@ import { CreateSecurityComponent } from './securities/create-security.component'
 import { PortfolioListComponent } from './portfolios/portfolio-list.component';
 import { PortfolioThumbnailComponent } from './portfolios/portfolio-thumbnail.component';
 import { PortfolioService } from './portfolios/shared/portfolio.service';
-import { PortfolioRouteActivator } from './portfolios/portfolio-route-activator';
 import { PortfolioDetailsComponent } from './portfolios/portfolio-details.component';
 import { CreatePortfolioSecurityComponent } from './portfolios/create-portfolio-security.component';
 
@@ -27,6 +26,7 @@ import { ModalTriggerDirective } from './common/modalTrigger.directive';
 import { JQ_TOKEN } from './common/jQuery.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CreatePortfolioComponent } from './portfolios/create-portfolio.component';
+import { PortfolioResolver } from './portfolios/shared/portfolio-resolver.service';
 
 let jQuery = window['$'];
 
@@ -48,8 +48,9 @@ let jQuery = window['$'];
   ],
   providers: [SecurityService,SecurityRouteActivator,
             AuthService,
-            PortfolioService,PortfolioRouteActivator,
-            { provide: JQ_TOKEN, useValue:jQuery}
+            PortfolioService,
+            { provide: JQ_TOKEN, useValue:jQuery},
+            PortfolioResolver
           ],
   bootstrap: [AppComponent]
 })

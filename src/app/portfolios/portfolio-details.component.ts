@@ -18,17 +18,7 @@ export class PortfolioDetailsComponent
 
     ngOnInit()
     {
-        console.log('11');
-        /* + is just to type cast to number*/
-        this.route.params.forEach((params:Params) => {
-            this.portfolio = this.portfolioService.getPortfolio(
-                +params['id']);   
-        
-        /*QuestionForDushyant*/
-        this.addMode=false;
-        console.log('22');
-        });
-        console.log('33');
+        this.portfolio = this.route.snapshot.data['portfolio'];
     }
 
     addSecurity()

@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core'
+import { IPortfolio } from './shared/portfolio.model';
 import { IPortfolioSecurity } from './shared/portfolio-security.model';
 
 @Component ({
@@ -8,7 +9,7 @@ import { IPortfolioSecurity } from './shared/portfolio-security.model';
 export class PortfolioSecuritiesListComponent implements OnChanges
 {
     
-    @Input() securities:IPortfolioSecurity[];
+    @Input() portfolio:IPortfolio;
     
     visibleSecurities:IPortfolioSecurity[];
 
@@ -18,19 +19,21 @@ export class PortfolioSecuritiesListComponent implements OnChanges
 
     ngOnInit()
     {
-        if(this.securities)
+        if(this.portfolio)
         {
             this.sectors = ["All"];
-            this.sectors = this.sectors.concat(this.securities.map(s => s.sector));
+            this.sectors = this.sectors.concat(this.portfolio.securities.map(s => s.sector));
             this.sectorFilter = "All";
 
             this.sortBy = "symbol";
+
+            this.onChange();
         }
-        this.onChange();
+        
     }
 
     ngOnChanges(): void {
-        if(this.sortBy!=undefined && this.sectorFilter!=undefined && this.securities!=undefined)
+        if(this.sortBy!=undefined && this.sectorFilter!=undefined && this.portfolio!=undefined)
         {
             this.onChange();
         }
@@ -44,13 +47,14 @@ export class PortfolioSecuritiesListComponent implements OnChanges
 
     applyFilter()
     {
+        console.log(this.portfolio.securities);
         if(this.sectorFilter=="All")
         {
-            this.visibleSecurities = this.securities.slice(0);
+            this.visibleSecurities = this.portfolio.securities.slice(0);
         }
         else
         {
-            this.visibleSecurities = this.securities.filter(s => 
+            this.visibleSecurities = this.portfolio.securities.filter(s => 
                 {
                     return s.sector.toUpperCase() === this.sectorFilter.toUpperCase();
                 });
@@ -71,11 +75,11 @@ export class PortfolioSecuritiesListComponent implements OnChanges
 
     sortBySymbol(s1:IPortfolioSecurity,s2:IPortfolioSecurity)
     {
-        if(s1.securitySymbol > s2.securitySymbol)
+        if(s1.symbol > s2.symbol)
         {
             return 1;
         }
-        else if(s1.securitySymbol === s2.securitySymbol)
+        else if(s1.symbol === s2.symbol)
         {
             return 0;
         }
@@ -87,6 +91,6 @@ export class PortfolioSecuritiesListComponent implements OnChanges
 
     sortByPrice(s1:IPortfolioSecurity,s2:IPortfolioSecurity)
     {
-        return s1.costPerShare - s2.costPerShare;
+        return s1.costPerUnit - s2.costPerUnit;
     }
 }

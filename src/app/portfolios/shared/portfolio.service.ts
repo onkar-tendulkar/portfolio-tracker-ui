@@ -28,9 +28,10 @@ export class PortfolioService
         ;
     }
 
-    getPortfolio(id:number):IPortfolio
+    getPortfolioWithSecurities(portfolioId:number):Observable<IPortfolio>
     {
-        return PORTFOLIOS.find(portfolio => portfolio.id === id);
+        return this.http.get<IPortfolio>('http://localhost:8080/api/portfolio_security?portfolioId='+portfolioId)
+        .pipe(catchError(this.handleError<IPortfolio>('getSecuritiesForPortfolio',undefined)));
     }
 
     savePortfolio(portfolio:IPortfolio)
@@ -49,7 +50,7 @@ export class PortfolioService
         PORTFOLIOS.forEach(
             p => {
                 var matchingSecurities = p.securities.filter(
-                    s=> s.securitySymbol === searchSymbol);
+                    s=> s.symbol === searchSymbol);
                     matchingSecurities = matchingSecurities.map( (s:any) => 
                     {
                         s.portfolioId = p.id;
@@ -85,10 +86,10 @@ export class PortfolioService
 
 const PORTFOLIOS:IPortfolio[] = [
     {"id":1, userId: 1,"name":"Onkar","createdTime":new Date("2019-09-05T13:04:38.517+0000"),
-    securities: [{"securitySymbol":"MS", "sector":"Financial Services", "units":2, "costPerShare":50,"purchaseTime":new Date()},
-    {"securitySymbol":"GOOGL", "sector":"Technology", "units":1, "costPerShare":100,"purchaseTime":new Date()}]},
+    securities: [{"symbol":"MS", "sector":"Financial Services", "units":2, "costPerUnit":50,"datePurchased":new Date()},
+    {"symbol":"GOOGL", "sector":"Technology", "units":1, "costPerUnit":100,"datePurchased":new Date()}]},
     
     {"id":2, userId: 2,"name":"Ragini","createdTime":new Date("2019-09-05T13:04:38.517+0000"),
-    securities: [{"securitySymbol":"TSLA", "sector":"Consumer Cyclical","units":2, "costPerShare":50,"purchaseTime":new Date()},
-    {"securitySymbol":"GOOGL", "sector":"Technology", "units":1, "costPerShare":100,"purchaseTime":new Date()}]},
+    securities: [{"symbol":"TSLA", "sector":"Consumer Cyclical","units":2, "costPerUnit":50,"datePurchased":new Date()},
+    {"symbol":"GOOGL", "sector":"Technology", "units":1, "costPerUnit":100,"datePurchased":new Date()}]},
 ]

@@ -6,7 +6,7 @@ import { SecurityRouteActivator } from './securities/security-route-activator';
 import { CreateSecurityComponent } from './securities/create-security.component';
 import { PortfolioListComponent } from './portfolios/portfolio-list.component';
 import { PortfolioDetailsComponent } from './portfolios/portfolio-details.component';
-import { PortfolioRouteActivator } from './portfolios/portfolio-route-activator';
+import { PortfolioResolver } from './portfolios/shared/portfolio-resolver.service';
 
 export const appRoutes:Routes = [
     {   path : "securities", component : SecuritiesListComponent },
@@ -14,7 +14,7 @@ export const appRoutes:Routes = [
     {   path : "securities/:id", component : SecurityDetailsComponent, canActivate : [SecurityRouteActivator]},
     
     {   path : "portfolios", component : PortfolioListComponent },
-    {   path : "portfolios/:id", component : PortfolioDetailsComponent, canActivate : [PortfolioRouteActivator]},
+    {   path : "portfolios/:id", component : PortfolioDetailsComponent , resolve : {portfolio:PortfolioResolver}},
         
     {   path : "", redirectTo: "securities", pathMatch: "full" },
     {   path : "404", component : Error404Component},

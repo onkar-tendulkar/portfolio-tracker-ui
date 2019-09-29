@@ -21,23 +21,23 @@ export class CreatePortfolioSecurityComponent implements OnInit
     securitySymbol:FormControl
     sector:FormControl
     units:FormControl
-    costPerShare:FormControl
-    purchaseTime:FormControl
+    costPerUnit:FormControl
+    datePurchased:FormControl
 
     ngOnInit(): void {
         
     this.securitySymbol = new FormControl('',[Validators.required,Validators.maxLength(5)]);
     this.sector = new FormControl('',[Validators.required]);
     this.units = new FormControl('',[Validators.required,Validators.pattern('^[1-9]\d*$')]);
-    this.costPerShare = new FormControl('',[Validators.required,Validators.pattern('^[1-9]\d*$')]);
-    this.purchaseTime = new FormControl('',Validators.required);
+    this.costPerUnit = new FormControl('',[Validators.required,Validators.pattern('^[1-9]\d*$')]);
+    this.datePurchased = new FormControl('',Validators.required);
     
     this.newSecurityForm = new FormGroup({
         securitySymbol: this.securitySymbol,
         sector: this.sector,
         units: this.units,
-        costPerShare: this.costPerShare,
-        purchaseTime: this.purchaseTime
+        costPerUnit: this.costPerUnit,
+        datePurchased: this.datePurchased
     });
     }
 
@@ -45,11 +45,11 @@ export class CreatePortfolioSecurityComponent implements OnInit
     {
         let security : IPortfolioSecurity = 
         {
-            securitySymbol: formValues.securitySymbol,
-            sector: formValues.securitySymbol,
+            symbol: formValues.symbol,
+            sector: formValues.sector,
             units: +formValues.units,
-            costPerShare: +formValues.costPerShare,
-            purchaseTime: formValues.purchaseTime
+            costPerUnit: +formValues.costPerUnit,
+            datePurchased: formValues.datePurchased
         };
         this.saveNewSecurity.emit(security);
     }

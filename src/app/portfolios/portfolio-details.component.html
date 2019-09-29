@@ -7,6 +7,6 @@
         </div>
 </div>
 <hr>
-<portfolio-securities-list *ngIf="!addMode" [securities]="portfolio?.securities"></portfolio-securities-list>
+<portfolio-securities-list *ngIf="!addMode" [portfolio]="portfolio"></portfolio-securities-list>
 <create-portfpolio-security *ngIf="addMode"
         (saveNewSecurity)="saveNewSecurity($event)"></create-portfpolio-security>

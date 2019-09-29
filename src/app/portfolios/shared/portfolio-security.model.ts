@@ -1,8 +1,8 @@
 export interface IPortfolioSecurity
 {
-    securitySymbol:string
-    sector:string
+    symbol:string
+    sector?:string
     units:number
-    costPerShare:number
-    purchaseTime:Date
+    costPerUnit:number
+    datePurchased:Date
 }
