@@ -12,13 +12,13 @@ import { PortfolioService } from '../portfolios/shared/portfolio.service';
 })
 export class NavBarComponent
 { 
-    foundPortfolioSecurities:IPortfolioSecurity[];
+    foundPortfolioSecurities:any;
 
     constructor (private auth:AuthService,private portfolioService:PortfolioService){}
     
     searchSecurity(searchSymbol)
     {
-        this.portfolioService.searchSecurity(searchSymbol).subscribe
+        this.portfolioService.searchPortfolios(searchSymbol).subscribe
             ( securities => {
                 this.foundPortfolioSecurities = securities;
             }

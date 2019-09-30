@@ -37,36 +37,18 @@ export class PortfolioService
         .pipe(catchError(this.handleError<IPortfolio>('getSecuritiesForPortfolio',undefined)));
     }
 
+    searchPortfolios(searchSymbol:string):Observable<IPortfolioSecurity[]>
+    {
+        return this.http.get<IPortfolioSecurity[]>('http://localhost:8080/api/ps?userId='+this.authService.currentUser.id+'&symbol='+searchSymbol)
+        .pipe(catchError(this.handleError<IPortfolioSecurity[]>('getSecuritiesForPortfolio',[])));
+    }
+
     /*To be converted*/
     addSecurityToPortfolio(portfolio:IPortfolio,security:IPortfolioSecurity)
     {
         portfolio.securities.push(security);
     }
     
-    searchSecurity(searchSymbol:string)
-    {
-        var results:IPortfolioSecurity[]=[];
-        PORTFOLIOS.forEach(
-            p => {
-                var matchingSecurities = p.securities.filter(
-                    s=> s.symbol === searchSymbol);
-                    matchingSecurities = matchingSecurities.map( (s:any) => 
-                    {
-                        s.portfolioId = p.id;
-                        s.portfolioName = p.name;
-                        return s;
-                    });
-                    results = results.concat(matchingSecurities)
-            }
-        )
-        
-        var emitter = new EventEmitter(true);
-        setTimeout(() => {
-            emitter.emit(results)
-        , 100});
-
-        return emitter;
-    }
 
     getHardcodedPortfolios(userId:number):Observable<IPortfolio[]>
     {

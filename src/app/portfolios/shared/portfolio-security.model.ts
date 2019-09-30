@@ -5,4 +5,6 @@ export interface IPortfolioSecurity
     units:number
     costPerUnit:number
     datePurchased:Date
+    portfolioName?:string
+    portfolioId?:number
 }
