@@ -13,6 +13,7 @@ export class PortfolioService
     constructor(private http:HttpClient,private authService:AuthService)
     {}
 
+    /*Port folio lists*/
     getPortfoliosForUser(userId:number):Observable<IPortfolio[]>
     {
         var portFolioList:IPortfolio;
@@ -21,6 +22,7 @@ export class PortfolioService
         ;
     }
     
+    /*Portfolio object*/
     createPortfolio(portfolio:IPortfolio):Observable<Object>
     {
         return this.http.post('http://localhost:8080/api/portfolio',portfolio)
@@ -28,17 +30,14 @@ export class PortfolioService
         ;
     }
 
+    /*Portfolio with securitites*/
     getPortfolioWithSecurities(portfolioId:number):Observable<IPortfolio>
     {
         return this.http.get<IPortfolio>('http://localhost:8080/api/portfolio_security?portfolioId='+portfolioId)
         .pipe(catchError(this.handleError<IPortfolio>('getSecuritiesForPortfolio',undefined)));
     }
 
-    savePortfolio(portfolio:IPortfolio)
-    {
-        PORTFOLIOS.push(portfolio);
-    }
-
+    /*To be converted*/
     addSecurityToPortfolio(portfolio:IPortfolio,security:IPortfolioSecurity)
     {
         portfolio.securities.push(security);

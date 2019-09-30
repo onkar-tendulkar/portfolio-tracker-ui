@@ -45,7 +45,8 @@ export class PortfolioListComponent
                 if(r!=undefined)
                 {
                     this.addMode=false;
-                    this.router.navigate(['/portfolios']);
+                    var id:Number = +r['id'];
+                    this.router.navigate(['/portfolios/'+id]);
                 }
             });         
     }
