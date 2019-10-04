@@ -21,9 +21,17 @@ export class PortfolioSecuritiesListComponent implements OnChanges
     {
         if(this.portfolio)
         {
+            /*If you need hardcoded portfolio for testing with sector
+            
+            this.portfolio = {"id":289,"userId":1,"name":"Onkar's portfolio","createdTime":new Date("2019-09-06T05:57:53.955+0000"),
+            "securities":
+                [{"symbol":"MSFT", sector:"Software","units":2,"costPerUnit":140.05,"datePurchased":new Date("2019-09-05"),"portfolioId":289,"portfolioName":"Onkar's portfolio"},
+                {"symbol":"GOOGL", sector:"Software","units":1,"costPerUnit":1212.19,"datePurchased":new Date("2019-09-05"),"portfolioId":289,"portfolioName":"Onkar's portfolio"},
+                {"symbol":"AAPL", sector:"Hardware","units":3,"costPerUnit":220.05,"datePurchased":new Date("2019-09-05"),"portfolioId":289,"portfolioName":"Onkar's portfolio"}
+                ]};*/
+                
             this.sectors = ["All"];
             this.sectors = this.sectors.concat(this.portfolio.securities.map(s => s.sector));
-            this.sectorFilter = "All";
 
             this.sortBy = "symbol";
 
@@ -35,6 +43,7 @@ export class PortfolioSecuritiesListComponent implements OnChanges
     ngOnChanges(): void {
         if(this.sortBy!=undefined && this.sectorFilter!=undefined && this.portfolio!=undefined)
         {
+            console.log(this.sectorFilter);
             this.onChange();
         }
     }
@@ -47,18 +56,20 @@ export class PortfolioSecuritiesListComponent implements OnChanges
 
     applyFilter()
     {
-        console.log(this.portfolio.securities);
-        if(this.sectorFilter=="All")
+        console.log(this.visibleSecurities);
+        if(this.sectorFilter==undefined || this.sectorFilter=="All")
         {
             this.visibleSecurities = this.portfolio.securities.slice(0);
         }
         else
         {
+            console.log("filtering");
             this.visibleSecurities = this.portfolio.securities.filter(s => 
                 {
                     return s.sector.toUpperCase() === this.sectorFilter.toUpperCase();
                 });
         }
+        console.log(this.visibleSecurities);
     }
 
     sort()
