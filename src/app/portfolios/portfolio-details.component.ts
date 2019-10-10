@@ -3,8 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { IPortfolio } from './shared/portfolio.model';
 import { PortfolioService } from './shared/portfolio.service';
 
-
-
 @Component ({
     templateUrl: 'portfolio-details.component.html'
 })

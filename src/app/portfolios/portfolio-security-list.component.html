@@ -20,7 +20,7 @@
 <div class="row" *ngFor="let security of visibleSecurities">
     <div class="col-md-10">
       <div class="well">
-          <h3>{{security.symbol}}</h3>
+          <h3><a [routerLink]="['/securityDetails', security.symbol]">{{security.symbol}}</a></h3>
           <h5>Sector: {{security.sector}}</h5>
           <span>Units: {{security.units}}</span><br />
           <span>Cost per share: {{security.costPerUnit | currency:'USD'}}</span>
