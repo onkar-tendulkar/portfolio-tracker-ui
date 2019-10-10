@@ -16,6 +16,7 @@ import { IPortfolioSecurity } from './shared/portfolio-security.model';
 export class CreatePortfolioSecurityComponent implements OnInit
 {
     @Output() saveNewSecurity = new EventEmitter();
+    @Output() cancelNewSecurity = new EventEmitter();
     
     newSecurityForm:FormGroup
     securitySymbol:FormControl

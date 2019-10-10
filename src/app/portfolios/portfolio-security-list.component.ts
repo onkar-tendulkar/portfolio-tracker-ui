@@ -56,20 +56,17 @@ export class PortfolioSecuritiesListComponent implements OnChanges
 
     applyFilter()
     {
-        console.log(this.visibleSecurities);
         if(this.sectorFilter==undefined || this.sectorFilter=="All")
         {
             this.visibleSecurities = this.portfolio.securities.slice(0);
         }
         else
         {
-            console.log("filtering");
             this.visibleSecurities = this.portfolio.securities.filter(s => 
                 {
                     return s.sector.toUpperCase() === this.sectorFilter.toUpperCase();
                 });
         }
-        console.log(this.visibleSecurities);
     }
 
     sort()
