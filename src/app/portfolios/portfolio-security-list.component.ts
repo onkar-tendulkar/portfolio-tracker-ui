@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core'
 import { IPortfolio } from './shared/portfolio.model';
 import { IPortfolioSecurity } from './shared/portfolio-security.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component ({
     selector:'portfolio-securities-list',
@@ -8,36 +9,49 @@ import { IPortfolioSecurity } from './shared/portfolio-security.model';
 })
 export class PortfolioSecuritiesListComponent implements OnChanges
 {
-    
+
     @Input() portfolio:IPortfolio;
-    
+
     visibleSecurities:IPortfolioSecurity[];
 
     sectors : string[] = ["All"];
     sectorFilter:string;
     sortBy:string;
 
+    constructor(private route:ActivatedRoute)
+    {}
+
     ngOnInit()
     {
         if(this.portfolio)
         {
             /*If you need hardcoded portfolio for testing with sector
-            
+
             this.portfolio = {"id":289,"userId":1,"name":"Onkar's portfolio","createdTime":new Date("2019-09-06T05:57:53.955+0000"),
             "securities":
                 [{"symbol":"MSFT", sector:"Software","units":2,"costPerUnit":140.05,"datePurchased":new Date("2019-09-05"),"portfolioId":289,"portfolioName":"Onkar's portfolio"},
                 {"symbol":"GOOGL", sector:"Software","units":1,"costPerUnit":1212.19,"datePurchased":new Date("2019-09-05"),"portfolioId":289,"portfolioName":"Onkar's portfolio"},
                 {"symbol":"AAPL", sector:"Hardware","units":3,"costPerUnit":220.05,"datePurchased":new Date("2019-09-05"),"portfolioId":289,"portfolioName":"Onkar's portfolio"}
                 ]};*/
-                
+
             this.sectors = ["All"];
             this.sectors = this.sectors.concat(this.portfolio.securities.map(s => s.sector));
 
             this.sortBy = "symbol";
 
+            if(this.route.snapshot.queryParamMap.get('sectorFilter') !== undefined)
+            {
+              this.sectorFilter = this.route.snapshot.queryParamMap.get('sectorFilter');
+            }
+
+            if(this.route.snapshot.queryParamMap.get('sortBy') !== undefined)
+            {
+              this.sortBy = this.route.snapshot.queryParamMap.get('sortBy');
+            }
+
             this.onChange();
         }
-        
+
     }
 
     ngOnChanges(): void {
@@ -62,7 +76,7 @@ export class PortfolioSecuritiesListComponent implements OnChanges
         }
         else
         {
-            this.visibleSecurities = this.portfolio.securities.filter(s => 
+            this.visibleSecurities = this.portfolio.securities.filter(s =>
                 {
                     return s.sector.toUpperCase() === this.sectorFilter.toUpperCase();
                 });

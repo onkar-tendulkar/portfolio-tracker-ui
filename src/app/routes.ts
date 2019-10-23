@@ -13,11 +13,11 @@ export const appRoutes:Routes = [
     {   path : "securities", component : SecuritiesListComponent },
     {   path : "securities/new", component : CreateSecurityComponent },
     {   path : "securities/:id", component : SecurityDetailsComponent, canActivate : [SecurityRouteActivator]},
-    
+
     {   path : "portfolios", component : PortfolioListComponent },
     {   path : "portfolios/:id", component : PortfolioDetailsComponent , resolve : {portfolio:PortfolioResolver}},
-    {   path : "securityDetails/:symbol", component : PortfolioSecurityDetailsComponent },
-        
+    {   path : "securityDetails/:portfolioId/:symbol", component : PortfolioSecurityDetailsComponent },
+
     {   path : "", redirectTo: "securities", pathMatch: "full" },
     {   path : "404", component : Error404Component},
     {   path : "user", loadChildren : "./user/user.module#UserModule"}

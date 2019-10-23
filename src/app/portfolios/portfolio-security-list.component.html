@@ -1,6 +1,6 @@
 <label for="sectorFilter">Sector</label>
 <span style="padding-left:10px;">
-<select style="color:black" id="sectorFilter" name="sectorFilter" 
+<select style="color:black" id="sectorFilter" name="sectorFilter"
 (change)="sectorFilter=$event.target.value;onChange()">
   <option style="color:black" *ngFor="let s of sectors" >
     {{s}}
@@ -10,17 +10,18 @@
 
 <label  style="padding-left:50px;">Sort By</label>
 <span style="padding-left:10px;">
-  <select style="color:black" id="sortBy" name="sortBy" 
+  <select style="color:black" id="sortBy" name="sortBy"
   (change)="sortBy=$event.target.value;onChange()">
-    <option style="color:black" value="symbol">Symbol</option>
-    <option style="color:black" value="price">Price</option>
+    <option style="color:black" value="symbol" [selected]="sortBy == 'symbol'">Symbol</option>
+    <option style="color:black" value="price"  [selected]="sortBy == 'price'">Price</option>
   </select>
   </span>
 
 <div class="row" *ngFor="let security of visibleSecurities">
     <div class="col-md-10">
       <div class="well">
-          <h3><a [routerLink]="['/securityDetails', security.symbol]">{{security.symbol}}</a></h3>
+          <h3><a [routerLink]="['/securityDetails', portfolio.id, security.symbol]"
+                [queryParams]="{sectorFilter:sectorFilter,sortBy:sortBy}">{{security.symbol}}</a></h3>
           <h5>Sector: {{security.sector}}</h5>
           <span>Units: {{security.units}}</span><br />
           <span>Cost per share: {{security.costPerUnit | currency:'USD'}}</span>
