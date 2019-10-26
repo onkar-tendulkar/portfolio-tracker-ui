@@ -28,13 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreatePortfolioComponent } from './portfolios/create-portfolio.component';
 import { PortfolioResolver } from './portfolios/shared/portfolio-resolver.service';
 import { PortfolioSecurityDetailsComponent } from './portfolios/security-details.component';
+import { PortfolioSecurityResolver } from './portfolios/shared/portfolio-security-resolver.service';
 
 let jQuery = window['$'];
 
 @NgModule({
   declarations: [
     AppComponent,SecuritiesListComponent,SecurityComponent,SecurityDetailsComponent,NavBarComponent,Error404Component
-    ,CreateSecurityComponent, 
+    ,CreateSecurityComponent,
     PortfolioListComponent, PortfolioThumbnailComponent, PortfolioDetailsComponent,
     CreatePortfolioSecurityComponent, PortfolioSecuritiesListComponent,
     PortfolioSecurityDetailsComponent,
@@ -52,7 +53,8 @@ let jQuery = window['$'];
             AuthService,
             PortfolioService,
             { provide: JQ_TOKEN, useValue:jQuery},
-            PortfolioResolver
+            PortfolioResolver,
+            PortfolioSecurityResolver
           ],
   bootstrap: [AppComponent]
 })

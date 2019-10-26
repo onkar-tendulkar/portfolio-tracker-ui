@@ -16,22 +16,24 @@ export class PortfolioDetailsComponent
 
     ngOnInit()
     {
-        this.portfolio = this.route.snapshot.data['portfolio'];
+
+      this.portfolio = this.route.snapshot.data['portfolio'][0];
+      this.portfolio.securities = this.route.snapshot.data['securities'];
     }
 
     addSecurity()
     {
-        this.addMode=true;
+        this.addMode = true;
     }
 
     cancelNewSecurity()
     {
-        this.addMode=false;
+        this.addMode = false;
     }
 
     saveNewSecurity(event)
     {
-        this.portfolioService.addSecurityToPortfolio(this.portfolio, event);   
-        this.addMode=false;
+        this.portfolioService.addSecurityToPortfolio(this.portfolio, event);
+        this.addMode = false;
     }
 }

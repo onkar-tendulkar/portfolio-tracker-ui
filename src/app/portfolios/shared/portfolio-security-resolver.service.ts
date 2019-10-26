@@ -4,12 +4,12 @@ import { PortfolioService } from './portfolio.service';
 
 
 @Injectable()
-export class PortfolioResolver implements Resolve<any>
+export class PortfolioSecurityResolver implements Resolve<any>
 {
-    constructor(private portfolioService:PortfolioService){}
+    constructor(private portfolioService: PortfolioService){}
 
     resolve(route: ActivatedRouteSnapshot, state: import("@angular/router").RouterStateSnapshot)
     {
-        return this.portfolioService.getPortfolioWithoutSecurities(+route.params['id']);
+        return this.portfolioService.getSecuritiesForPortfolio(+route.params['id']);
     }
 }

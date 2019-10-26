@@ -8,6 +8,7 @@ import { PortfolioListComponent } from './portfolios/portfolio-list.component';
 import { PortfolioDetailsComponent } from './portfolios/portfolio-details.component';
 import { PortfolioResolver } from './portfolios/shared/portfolio-resolver.service';
 import { PortfolioSecurityDetailsComponent } from './portfolios/security-details.component';
+import { PortfolioSecurityResolver } from './portfolios/shared/portfolio-security-resolver.service';
 
 export const appRoutes:Routes = [
     {   path : "securities", component : SecuritiesListComponent },
@@ -15,7 +16,9 @@ export const appRoutes:Routes = [
     {   path : "securities/:id", component : SecurityDetailsComponent, canActivate : [SecurityRouteActivator]},
 
     {   path : "portfolios", component : PortfolioListComponent },
-    {   path : "portfolios/:id", component : PortfolioDetailsComponent , resolve : {portfolio:PortfolioResolver}},
+    {   path : "portfolios/:id", component : PortfolioDetailsComponent ,
+            resolve : {portfolio: PortfolioResolver,
+                    securities: PortfolioSecurityResolver}},
     {   path : "securityDetails/:portfolioId/:symbol", component : PortfolioSecurityDetailsComponent },
 
     {   path : "", redirectTo: "securities", pathMatch: "full" },
