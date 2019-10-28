@@ -16,9 +16,12 @@ export class PortfolioDetailsComponent
 
     ngOnInit()
     {
-
-      this.portfolio = this.route.snapshot.data['portfolio'][0];
-      this.portfolio.securities = this.route.snapshot.data['securities'];
+      this.route.data.subscribe(
+        data => {
+          this.portfolio = data['portfolio'][0];
+          this.portfolio.securities = data['securities'];
+        }
+      );
     }
 
     addSecurity()
