@@ -47,7 +47,7 @@ export class PortfolioSecuritiesListComponent implements OnChanges {
   initializeSector(): void {
     this.sectors = ["All"];
     this.sectors = this.sectors.concat(
-      this.portfolio.securities.map(s => s.sector)
+      Array.from(new Set(this.portfolio.securities.map(s => s.sector)))
     );
 
     if (this.route.snapshot.queryParamMap.get("sectorFilter") !== undefined) {
