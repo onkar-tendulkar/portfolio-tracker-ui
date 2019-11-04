@@ -9,7 +9,7 @@
     </div>
 
     <div class="form-group" [ngClass]="{'error': newSecurityForm.controls.symbol?.invalid && newSecurityForm.controls.symbol?.touched}">
-      <label for="securitySymbol">Symbol:</label>
+      <label for="symbol">Symbol:</label>
       <em *ngIf="newSecurityForm.controls.symbol?.invalid && (newSecurityForm.controls.symbol?.touched)">Required</em>
       <input (ngModel)="newSecurity.symbol" name="symbol" required id="symbol" type="text" class="form-control" placeholder="Symbol..." />
     </div>
@@ -25,7 +25,7 @@
       <input (ngModel)="newSecurity.imageUrl" name="imageUrl" required pattern=".*\/.*.(png|jpg)" id="imageUrl" type="text" class="form-control" placeholder="url of image..." />
       <img />
     </div>
-    
+
     <button type="submit" class="btn btn-primary">Save</button>
     <button type="button" [disabled]="newSecurityForm.invalid" class="btn btn-default" (click)="cancel()">Cancel</button>
   </form>

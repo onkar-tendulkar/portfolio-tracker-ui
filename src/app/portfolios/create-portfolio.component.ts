@@ -33,14 +33,12 @@ export class CreatePortfolioComponent
 
     savePortfolio(formValues)
     {
-        let portfolio : IPortfolio = 
+        let portfolio : IPortfolio =
         {
             id:undefined,
             name:formValues.portfolioName,
             userId:this.authService.currentUser.id
         };
-        console.log("a");
-        console.log(formValues);
         this.saveNewPortfolio.emit(portfolio);
     }
 }

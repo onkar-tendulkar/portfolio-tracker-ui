@@ -50,10 +50,9 @@ export class PortfolioService
         .pipe(catchError(this.handleError<IPortfolioSecurity[]>('searchPortfolios', [])));
     }
 
-    /*To be converted*/
-    addSecurityToPortfolio(portfolio: IPortfolio, security: IPortfolioSecurity)
+    addSecurityToPortfolio(portfolio: IPortfolio, security: IPortfolioSecurity): Observable<Object>
     {
-        portfolio.securities.push(security);
+      return this.http.post('http://localhost:8080/api/portfolio_security', security);
     }
 
 

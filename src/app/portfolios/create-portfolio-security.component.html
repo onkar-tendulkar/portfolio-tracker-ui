@@ -5,15 +5,10 @@
     <form [formGroup]="newSecurityForm" autocomplete="off"
             (ngSubmit)="saveSecurity(newSecurityForm.value)">
       <div class="form-group">
-        <label for="securitySymbol">Symbol:</label>
-        <em *ngIf="securitySymbol.invalid && securitySymbol.dirty && securitySymbol.errors.required">Required</em>
-        <em *ngIf="securitySymbol.errors?.maxlength">Max Length 5</em>
-        <input id="securitySymbol" formControlName="securitySymbol" type="text" class="form-control" placeholder="Symbol..." />
-      </div>
-      <div class="form-group">
-        <label for="sector">Sector:</label>
-        <em *ngIf="sector.invalid && sector.dirty && sector.errors.required">Required</em>
-        <input id="sector" formControlName="sector" type="text" class="form-control" placeholder="Sector..." />
+        <label for="symbol">Symbol:</label>
+        <em *ngIf="symbol.invalid && symbol.dirty && symbol.errors.required">Required</em>
+        <em *ngIf="symbol.errors?.maxlength">Max Length 5</em>
+        <input id="symbol" formControlName="symbol" type="text" class="form-control" placeholder="Symbol..." />
       </div>
       <div class="form-group">
         <label for="purchaseDate">PurchaseDate:</label>
@@ -26,10 +21,10 @@
       <div class="form-group">
         <label for="costPerUnit">Cost per share:</label>
         <input id="costPerUnit" type="number" formControlName="costPerUnit" class="form-control" placeholder="Cost per share..." />
-      </div> 
-      
+      </div>
+
       <button type="submit" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-default" 
+      <button type="button" class="btn btn-default"
               (click)="cancelNewSecurity.emit()">Cancel</button>
     </form>
   </div>

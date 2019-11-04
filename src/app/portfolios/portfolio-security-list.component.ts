@@ -101,4 +101,5 @@ export class PortfolioSecuritiesListComponent implements OnChanges {
   sortByPrice(s1: IPortfolioSecurity, s2: IPortfolioSecurity) {
     return s1.costPerUnit - s2.costPerUnit;
   }
+
 }

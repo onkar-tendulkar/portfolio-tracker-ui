@@ -18,7 +18,8 @@ export const appRoutes:Routes = [
     {   path : "portfolios", component : PortfolioListComponent },
     {   path : "portfolios/:id", component : PortfolioDetailsComponent ,
             resolve : {portfolio: PortfolioResolver,
-                    securities: PortfolioSecurityResolver}},
+                    securities: PortfolioSecurityResolver},
+            runGuardsAndResolvers: 'always'},
     {   path : "securityDetails/:portfolioId/:symbol", component : PortfolioSecurityDetailsComponent },
 
     {   path : "", redirectTo: "securities", pathMatch: "full" },

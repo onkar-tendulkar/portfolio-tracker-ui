@@ -19,7 +19,6 @@ export class CreateSecurityComponent
 
     saveSecurity(formValues)
     {
-        console.log(formValues);
         formValues.createdTime = new Date("2019-09-05T13:04:38.517+0000");
         formValues.id = 999;
         this.service.saveSecurity(formValues);

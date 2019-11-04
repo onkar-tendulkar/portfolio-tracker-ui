@@ -17,25 +17,22 @@ export class CreatePortfolioSecurityComponent implements OnInit
 {
     @Output() saveNewSecurity = new EventEmitter();
     @Output() cancelNewSecurity = new EventEmitter();
-    
+
     newSecurityForm:FormGroup
-    securitySymbol:FormControl
-    sector:FormControl
+    symbol:FormControl
     units:FormControl
     costPerUnit:FormControl
     datePurchased:FormControl
 
     ngOnInit(): void {
-        
-    this.securitySymbol = new FormControl('',[Validators.required,Validators.maxLength(5)]);
-    this.sector = new FormControl('',[Validators.required]);
+
+    this.symbol = new FormControl('',[Validators.required,Validators.maxLength(5)]);
     this.units = new FormControl('',[Validators.required,Validators.pattern('^[1-9]\d*$')]);
     this.costPerUnit = new FormControl('',[Validators.required,Validators.pattern('^[1-9]\d*$')]);
     this.datePurchased = new FormControl('',Validators.required);
-    
+
     this.newSecurityForm = new FormGroup({
-        securitySymbol: this.securitySymbol,
-        sector: this.sector,
+        symbol: this.symbol,
         units: this.units,
         costPerUnit: this.costPerUnit,
         datePurchased: this.datePurchased
@@ -44,15 +41,14 @@ export class CreatePortfolioSecurityComponent implements OnInit
 
     saveSecurity(formValues:IPortfolioSecurity)
     {
-        let security : IPortfolioSecurity = 
+        let security : IPortfolioSecurity =
         {
             symbol: formValues.symbol,
-            sector: formValues.sector,
             units: +formValues.units,
             costPerUnit: +formValues.costPerUnit,
             datePurchased: formValues.datePurchased
         };
         this.saveNewSecurity.emit(security);
     }
-    
+
 }

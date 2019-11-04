@@ -34,8 +34,8 @@ let jQuery = window['$'];
 
 @NgModule({
   declarations: [
-    AppComponent,SecuritiesListComponent,SecurityComponent,SecurityDetailsComponent,NavBarComponent,Error404Component
-    ,CreateSecurityComponent,
+    AppComponent, SecuritiesListComponent, SecurityComponent, SecurityDetailsComponent, NavBarComponent, Error404Component
+    , CreateSecurityComponent,
     PortfolioListComponent, PortfolioThumbnailComponent, PortfolioDetailsComponent,
     CreatePortfolioSecurityComponent, PortfolioSecuritiesListComponent,
     PortfolioSecurityDetailsComponent,
@@ -46,7 +46,10 @@ let jQuery = window['$'];
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {
+      //onSameUrlNavigation: 'ignore',
+      onSameUrlNavigation: 'reload'
+    }),
     HttpClientModule
   ],
   providers: [SecurityService,SecurityRouteActivator,
